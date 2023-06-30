@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,8 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
   articles: any;
+  mostViewed: any;
+  env = environment;
 
   constructor(
     private http: HttpClient
@@ -16,11 +19,13 @@ export class HomeComponent {
 
   ngOnInit() {
     this.getAllArticles();
+    this.getMostViewed(5);
   }
+
 
   getAllArticles() {
 
-    this.http.get('http://localhost:8080/articles')
+    this.http.get(`${this.env.apiBaseURL}/articles`)
     .subscribe((response) =>{
       console.log(response);
       this.articles = response;
@@ -30,6 +35,16 @@ export class HomeComponent {
       }
 
 
+    );
+  }
+
+  getMostViewed(limit: number) {
+
+    this.http.get(`http://localhost:8080/articles/views/${limit}`)
+    .subscribe((response) =>{
+      console.log(response);
+      this.mostViewed = response;
+    }
     );
   }
 

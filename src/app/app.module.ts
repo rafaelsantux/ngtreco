@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
+import { ContactsComponent } from './pages/contact/contact.component';
 import { E404Component } from './pages/e404/e404.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ThemeComponent } from './theme/theme.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ThemeComponent } from './theme/theme.component';
     ThemeComponent
   ],
   imports: [
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
